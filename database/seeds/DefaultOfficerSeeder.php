@@ -14,11 +14,11 @@ class DefaultOfficerSeeder extends Seeder
      */
     public function run()
     {
-        $first_name     = 'Chacha';
-        $last_name      = 'Nurholis';
-        $email          = 'chachanurholis29@gmail.com';
-        $password       = 'p@ssw0rd';
-        $phone_number   = '081243215432';
+        $first_name     = 'Admin';
+        $last_name      = 'Auction';
+        $email          = 'admin123@gmail.com';
+        $password       = 'adminroot';
+        $phone_number   = '085335249308';
 
         $this->command->line("");
         $this->command->line("Create Default Officer...");

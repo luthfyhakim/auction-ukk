@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Goods;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use File;
-use PDF;
+// use File;
+use Illuminate\Support\Facades\Storage;
+// use PDF;
+use App\Http\Controllers\Controller;
 
 class GoodsController extends Controller
 {
@@ -157,7 +160,7 @@ class GoodsController extends Controller
         $delete = Goods::where('id', $id)->first();
 
         Goods::destroy($id);
-        File::delete('goodsFile/' . $delete->photo);
+        Storage::delete('goodsFile/' . $delete->photo);
 
         return redirect(route('admin.goodies'))->with('status', 'Barang berhasil dihapus!');
     }

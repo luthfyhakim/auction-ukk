@@ -1,45 +1,58 @@
 <?php
 
-namespace App\Http\Controllers\Officer;
+namespace App\Http\Controllers\Admin;
 
-// use File;
-use App\User;
+use App\Auction;
 use App\Goods;
 use App\Officer;
-use App\Auction;
-use App\AuctionHistory;
-use Illuminate\Http\Request;
+use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class OfficerController extends Controller
+class AdminController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
         $users    = User::all();
-        $officers = Officer::all();
         $goodies  = Goods::all();
         $auctions = Auction::all();
+        $officers = Officer::all();
 
-        return view('officers.index', [
-            'users' => $users,
-            'officers' => $officers,
-            'goodies' => $goodies,
-            'auctions' => $auctions
+        return view('admin.index', [
+            'users'    => $users,
+            'goodies'  => $goodies,
+            'auctions' => $auctions,
+            'officers' => $officers
         ]);
     }
 
     public function profile()
     {
-        $goodies           = Goods::where('user_id', Auth::user()->id)->get();
-        $auctions          = Auction::where('user_id', Auth::user()->id)->get();
-        $auction_histories = AuctionHistory::where('user_id', Auth::user()->id)->get();
+        $goodies           = Goods::all();
+        $auctions          = Auction::all();
+        $users             = User::all();
 
-        return view('officers.profile', [
+        return view('admin.profile', [
             'goodies'           => $goodies,
             'auctions'          => $auctions,
-            'auction_histories' => $auction_histories
+            'users'             => $users
         ]);
     }
 
@@ -72,6 +85,6 @@ class OfficerController extends Controller
         Storage::delete('usersFile/' . $officer->avatar);
         $officer->update($data);
 
-        return redirect('/officer/profile/')->with('status', 'Profil berhasil diperbarui!');
+        return redirect('/admin/profile/')->with('status', 'Profil berhasil diperbarui!');
     }
 }

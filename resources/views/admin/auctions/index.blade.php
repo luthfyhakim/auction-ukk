@@ -1,14 +1,14 @@
 @extends('layouts.admin-master')
 
-@section('title', '| My Lelang')
+@section('title', '| Admin Lelang')
 
-@section('title-header', 'My Lelang')
+@section('title-header', 'Lelang')
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -16,7 +16,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        <h4>My Lelang <span>({{ $auctions->count() }})</span></h4>
+        <h4>Lelang <span>({{ $auctions->count() }})</span></h4>
         <div class="card-header-action">
             <a href="{{ route('admin.auctions.export') }}" target="_blank" class="btn btn-danger">Ekpor <i class="fas fa-file-export"></i></a>
         </div>
@@ -31,7 +31,7 @@
                     <th scope="col">Tanggal Berakhir</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-                    @foreach ($auctions as $auction)      
+                    @foreach ($auctions as $auction)
                     <tr>
                         <td>{{ $auction->goods->goods }}</td>
                         <td>Rp. {{ $auction['final_price'] }}</td>
@@ -39,7 +39,7 @@
                         <td>{{ $auction['end_date'] }}</td>
                         <td>@if ($auction['status'] == 'opened') <div class="badge badge-success">{{ auction_status($auction['status']) }}</div> @else <div class="badge badge-warning">{{ auction_status($auction['status']) }}</div> @endif</td>
                         <td class="text-right">
-                            <a href="{{ '/admin/auctions/' . $auction['id'] }}" class="btn btn-info"><i class="fa fa-search"></i></a>
+                            <a href="{{ url('/admin/auctions/') . '/' . $auction['id'] }}" class="btn btn-info"><i class="fa fa-search"></i></a>
                         </td>
                     </tr>
                     @endforeach

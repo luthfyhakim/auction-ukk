@@ -13,11 +13,11 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
-        $first_name     = 'Chacha';
-        $last_name      = 'Nurholis';
-        $email          = 'chachanurholis29@gmail.com';
-        $password       = 'p@ssw0rd';
-        $phone_number   = '081243215432';
+        $first_name     = 'Luthfi';
+        $last_name      = 'Hakim';
+        $email          = 'luthfyhakim250404@gmail.com';
+        $password       = 'luthfyhakim';
+        $phone_number   = '085335249308';
 
         $this->command->line("");
         $this->command->line("Create Default User...");

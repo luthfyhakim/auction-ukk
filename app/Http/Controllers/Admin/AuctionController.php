@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Auction;
 use App\Goods;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDF;
+use App\Http\Controllers\Controller;
 
 class AuctionController extends Controller
 {
@@ -17,7 +18,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $auctions = Auction::where('user_id', Auth::user()->id)->get();
+        $auctions = Auction::all();
 
         return view('admin.auctions.index', compact('auctions'));
     }

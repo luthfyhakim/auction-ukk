@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -49,7 +49,7 @@
                     <th scope="col">Tanggal Berakhir</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-                    @foreach ($auctions as $auction)      
+                    @foreach ($auctions as $auction)
                     <tr>
                         <td>{{ $auction->user['name'] }}</td>
                         <td>{{ $auction->goods->goods }}</td>
