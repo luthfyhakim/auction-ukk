@@ -30,16 +30,9 @@ $("#modal-3").fireModal({
 });
 
 $("#modal-4").fireModal({
+  title: 'Cetak',
+  body: $("#modal-cetak"),
   footerClass: 'bg-whitesmoke',
-  body: 'Add the <code>bg-whitesmoke</code> class to the <code>footerClass</code> option.',
-  buttons: [
-    {
-      text: 'No Action!',
-      class: 'btn btn-primary btn-shadow',
-      handler: function(modal) {
-      }
-    }
-  ]
 });
 
 $("#modal-5").fireModal({

@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\User;
 
-use PDF;
-use File;
+// use File;
+// use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Goods;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Laravolt\Indonesia\Models\City;
 use Laravolt\Indonesia\Models\Village;
 use Laravolt\Indonesia\Models\District;
-
+use Laravolt\Indonesia\Models\Province;
+use Illuminate\Support\Facades\Storage;
 
 class GoodsController extends Controller
 {
@@ -37,10 +40,16 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        $districts = District::where('city_id', 3213)->pluck('name', 'id');
+        $provinces = Province::all()->pluck('name', 'id');
+        $cities = City::where('province_id', 35)->pluck('name', 'id');
+        $districts = District::where('city_id', 3503)->pluck('name', 'id');
+        $villages = Village::where('district_id', 3503110)->pluck('name', 'id');
 
         return view('users.goodies.create', [
-            'districts' => $districts
+            'provinces' => $provinces,
+            'cities' => $cities,
+            'districts' => $districts,
+            'villages' => $villages
         ]);
     }
 
@@ -55,8 +64,10 @@ class GoodsController extends Controller
         $request->validate([
             'goods'         => 'required',
             'initial_price' => 'required',
-            'description'   => 'required|min:55',
+            'description'   => 'required|min:10',
             'photo'         => 'required|mimes:jpg,png,jpeg|max:2048',
+            'province'      => 'required',
+            'city'          => 'required',
             'district'      => 'required',
             'village'       => 'required'
         ]);
@@ -144,7 +155,7 @@ class GoodsController extends Controller
 
         DB::table('auctions')->where('goods_id', $id)->delete();
         Goods::destroy($id);
-        File::delete('goodsFile/' . $delete->photo);
+        Storage::delete('goodsFile/' . $delete->photo);
 
         return redirect(route('user.goodies'))->with('status', 'Barang berhasil dihapus!');
     }
@@ -165,6 +176,7 @@ class GoodsController extends Controller
     {
         $pdf = PDF::loadview('users.goodies.export', compact('goodies'))->setPaper('A4', 'potrait');
         return $pdf->stream('Laporan-Barang');
+        // return $pdf->download('Laporan-Barang.pdf');
     }
 
     public function origin_of_goods(Request $request)

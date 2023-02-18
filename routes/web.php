@@ -1,5 +1,19 @@
 <?php
 
+// public
+use App\Http\Controllers\PublicController;
+
+// user
+use App\Http\Controllers\User\AuctionController as User_AuctionController;
+
+// officer
+use App\Http\Controllers\Officer\AuctionController as Officer_AuctionController;
+use App\Http\Controllers\Officer\OfficerController as Officer_OfficerController;
+
+// admin
+use App\Http\Controllers\Admin\AuctionController as Admin_AuctionController;
+use App\Http\Controllers\Admin\OfficerController as Admin_OfficerController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -7,12 +21,12 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return redirect(route('index-dcms'));
 // });
-Route::get('/', 'PublicController@index')->name('landing-page');
-Route::get('/about', 'PublicController@about')->name('about');
-Route::get('/auction', 'PublicController@auction')->name('auction');
-Route::get('/contact', 'PublicController@contact')->name('contact');
-Route::get('/term-of-use', 'PublicController@term_of_use')->name('term-of-use');
-Route::get('/privacy-policy', 'PublicController@privacy_policy')->name('privacy-policy');
+Route::get('/', [PublicController::class, 'index'])->name('landing-page');
+Route::get('/about', [PublicController::class, 'about'])->name('about');
+Route::get('/auction', [PublicController::class, 'auction'])->name('auction');
+Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+Route::get('/term-of-use', [PublicController::class, 'term_of_use'])->name('term-of-use');
+Route::get('/privacy-policy', [PublicController::class, 'privacy_policy'])->name('privacy-policy');
 
 // Auth User
 Auth::routes(['verify' => true]);
@@ -43,14 +57,18 @@ Route::name('officer.')->prefix('officer')->middleware('auth:officer', 'verified
 
 // Admin
 Route::name('admin.')->prefix('admin')->middleware('auth:officer', 'verified')->group(function () {
-    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+    Route::get('/dashboard', 'Admin\AdminController@index')->name('dashboard');
     // Officer
-    Route::resource('officers', 'OfficerController', ['names' => ['index' => 'officers']]);
+    Route::resource('officers', 'Admin\OfficerController', ['names' => ['index' => 'officers']]);
     // User
-    Route::resource('users', 'UserController', ['names' => ['index' => 'users']]);
+    Route::resource('users', 'Admin\UserController', ['names' => ['index' => 'users']]);
+    // Lelang
+    Route::resource('auctions', 'Admin\AuctionController', ['names' => ['index' => 'auctions']]);
+    Route::get('/auctions', 'Admin\AuctionController@index')->name('auctions');
+    Route::get('/auctions/export', 'Admin\AuctionController@export')->name('auctions.export');
     // Profile
-    Route::get('/profile', 'Officer\OfficerController@profile')->name('profile');
-    Route::patch('/profile/{id}', 'Officer\OfficerController@profile_update');
+    Route::get('/profile', 'Admin\AdminController@profile')->name('profile');
+    Route::patch('/profile/{id}', 'Admin\AdminController@profile_update');
 });
 
 // User

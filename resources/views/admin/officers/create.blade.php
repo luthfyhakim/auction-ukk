@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -62,7 +62,7 @@
                                 @foreach ($levels as $key => $level)
                                     @if (old('level_id') == $key)
                                         <option value="{{ $key }}" selected>{{ translation_level($level) }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $key }}">{{ translation_level($level) }}</option>
                                     @endif
                                 @endforeach

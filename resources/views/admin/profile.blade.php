@@ -1,4 +1,4 @@
-@extends('layouts.officer-master')
+@extends('layouts.admin-master')
 
 @section('title', '| Profil')
 
@@ -19,21 +19,21 @@
                 </a>
                 <div class="profile-widget-items">
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Barang</div>
+                        <div class="profile-widget-item-label">Total Barang</div>
                         <div class="profile-widget-item-value">{{ $goodies->count() }}</div>
                     </div>
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">My Lelang</div>
+                        <div class="profile-widget-item-label">Total Lelang</div>
                         <div class="profile-widget-item-value">{{ $auctions->count() }}</div>
                     </div>
                     <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Mengikuti</div>
-                        <div class="profile-widget-item-value">{{ $auction_histories->count() }}</div>
+                        <div class="profile-widget-item-label">Total User</div>
+                        <div class="profile-widget-item-value">{{ $users->count() }}</div>
                     </div>
                 </div>
             </div>
             <div class="profile-widget-description">
-                <div class="profile-widget-name">{{ Auth::user()->name }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Pengguna</div></div>
+                <div class="profile-widget-name">{{ Auth::user()->name }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> Admin</div></div>
                 {{ Auth::user()->description }}
             </div>
             <div class="card-footer text-center">
@@ -48,7 +48,7 @@
         </div>
         @endif
         <div class="card">
-            <form method="post" action="{{ '/officer/profile/' . Auth::user()->id }}" enctype="multipart/form-data">
+            <form method="post" action="{{ '/admin/profile/' . Auth::user()->id }}" enctype="multipart/form-data">
                 @method('patch')
                 @csrf
                 <div class="card-header">

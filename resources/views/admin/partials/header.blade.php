@@ -172,7 +172,7 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{ asset('') }}/stisla/assets/img/avatar/avatar-1.png"
+                            <img alt="image" src="@if(Auth::user()->avatar == null) {{ asset('stisla/assets/img/avatar/avatar-1.png') }} @elseif(strstr(Auth::user()->avatar, 'https')) {{ Auth::user()->avatar }} @else {{ '/usersFile/' . Auth::user()->avatar }} @endif"
                                 class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">Hai, {{ Auth::user()->name }}</div>
                         </a>

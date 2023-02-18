@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -62,6 +62,26 @@
                     <label class="text-danger">Lokasi Barang *</label>
                     <div class="row">
                         <div class="form-group col-6">
+                            <label for="province">Provinsi</label>
+                            <select name="province" id="province" class="form-control @error('province') is-invalid @enderror">
+                                <option value="">-- Pilih Provinsi --</option>
+                                @foreach ($provinces as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="city">Kota / Kabupaten</label>
+                            <select name="city" id="city" class="form-control @error('city') is-invalid @enderror">
+                                <option value="">-- Pilih Kabupaten --</option>
+                                @foreach ($cities as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
                             <label for="district">Kecamatan</label>
                             <select name="district" id="district" class="form-control @error('district') is-invalid @enderror">
                                 <option value="">-- Pilih Kecamatan --</option>
@@ -74,6 +94,9 @@
                             <label for="village">Desa</label>
                             <select name="village" id="village" class="form-control @error('village') is-invalid @enderror">
                                 <option value="">-- Pilih Desa --</option>
+                                @foreach ($villages as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

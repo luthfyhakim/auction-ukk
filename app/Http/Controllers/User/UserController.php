@@ -10,6 +10,7 @@ use App\AuctionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -46,7 +47,6 @@ class UserController extends Controller
         $auctions = Auction::where('user_id', Auth::user()->id)->get();
         $auction_histories = AuctionHistory::where('user_id', Auth::user()->id)->get();
 
-
         return view('users.profile', [
             'goodies'           => $goodies,
             'auctions'          => $auctions,
@@ -80,7 +80,7 @@ class UserController extends Controller
             $request->file('avatar')->move(public_path('usersFile'), $data['avatar']);
         }
 
-        File::delete('usersFile/' . $user->avatar);
+        Storage::delete('usersFile/' . $user->avatar);
         $user->update($data);
 
         return redirect('/user/profile/')->with('status', 'Profil berhasil diperbarui!');

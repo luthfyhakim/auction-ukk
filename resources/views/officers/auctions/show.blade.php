@@ -6,7 +6,7 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
@@ -32,7 +32,7 @@
                             <td>{{ custom_date($model->end_date, 'd M Y') }}</td>
                         </tr>
                         <tr>
-                            <th scope="col">Batas Penawaran</th>
+                            <th scope="col">Harga Penawaran</th>
                             <td>Rp. {{ $model->final_price }}</td>
                         </tr>
                         <tr>
@@ -77,7 +77,7 @@
                                 @foreach ($status as $item)
                                     @if ($model->status == $item)
                                         <option value="{{ $item }}" selected>{{ auction_status($item) }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $item }}">{{ auction_status($item) }}</option>
                                     @endif
                                 @endforeach

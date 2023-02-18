@@ -6,7 +6,7 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <th scope="col">Petugas</th>
-                            <td>{{ $model->officer }}</tdchr>
+                            <td>{{ $model->officer }}</td>
                         </tr>
                         <tr>
                             <th scope="col">Dibuat</th>
@@ -91,7 +91,7 @@
                                 @foreach ($status as $item)
                                     @if ($model->status == $item)
                                         <option value="{{ $item }}" selected>{{ auction_status($item) }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $item }}">{{ auction_status($item) }}</option>
                                     @endif
                                 @endforeach

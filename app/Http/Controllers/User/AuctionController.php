@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use PDF;
+// use PDF;
+use Barryvdh\DomPDF\PDF;
 use App\Goods;
 use App\Auction;
 use Ramsey\Uuid\Uuid;

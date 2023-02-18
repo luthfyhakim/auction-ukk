@@ -24,6 +24,11 @@
             <li class="menu-header">Pengguna</li>
             <li class="{{ set_active('admin.users') }}"><a class="nav-link" href="{{ route('admin.users') }}"><i
                         class="fas fa-users"></i> <span>Pengguna</span></a></li>
+
+            <!-- Lelang -->
+            <li class="menu-header">Lelang</li>
+            <li class="{{ set_active('admin.auctions') }}"><a class="nav-link" href="{{ route('admin.auctions') }}"><i
+                        class="fas fa-gavel"></i> <span>Lelang</span></a></li>
         </ul>
     </aside>
 </div>

@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -18,11 +18,11 @@
     <div class="card-header">
         <h4>Barang <span>({{ $goodies->count() }})</span></h4>
         <div class="card-header-action">
-            <button class="btn btn-danger" id="modal-5">Ekspor <i class="fas fa-file-export"></i></button>
+            <button class="btn btn-danger" id="modal-4">Ekspor <i class="fas fa-file-export"></i></button>
         </div>
     </div>
     <!-- Export Modal -->
-    <form class="modal-part" id="modal-login-part" action="{{ route('user.goodies.export_filter') }}" method="post">
+    <form class="modal-part" id="modal-cetak" action="{{ route('user.goodies.export_filter') }}" method="post">
         @csrf
         <div class="form-group">
             <label for="start_export">Dari</label>
@@ -36,7 +36,13 @@
                 <input type="date" name="end_export" id="end_export" class="form-control">
             </div>
         </div>
+        <div class="form-group row mb-4 float-right">
+            <div class="col-sm-12 col-md-7 float-right">
+                <button class="btn btn-primary">Cetak</button>
+            </div>
+        </div>
     </form>
+
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-striped">

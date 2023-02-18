@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -30,7 +30,7 @@
                                 @foreach ($goodies as $goods)
                                     @if (old('goods_id') == $goods->id)
                                         <option value="{{ $goods->id }}" selected>{{ $goods->goods }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $goods->id }}">{{ $goods->goods }}</option>
                                     @endif
                                 @endforeach
