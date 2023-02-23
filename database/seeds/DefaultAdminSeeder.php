@@ -14,14 +14,14 @@ class DefaultOfficerSeeder extends Seeder
      */
     public function run()
     {
-        $first_name     = 'Officer';
+        $first_name     = 'Admin';
         $last_name      = 'Auction';
-        $email          = 'officer123@gmail.com';
-        $password       = 'officerroot';
-        $phone_number   = '082210970741';
+        $email          = 'admin123@gmail.com';
+        $password       = 'adminroot';
+        $phone_number   = '085335249308';
 
         $this->command->line("");
-        $this->command->line("Create Default Officer...");
+        $this->command->line("Create Default Admin...");
         $Officer     = Officer::where('email', $email)->first();
         $dataOfficer = [
             'id'                => Uuid::uuid4()->getHex(),
@@ -32,7 +32,7 @@ class DefaultOfficerSeeder extends Seeder
             'password'          => Hash::make($password),
             'email_verified_at' => now(),
             'phone_number'      => $phone_number,
-            'level_id'          => 2 // Officer
+            'level_id'          => 1 // Administrator
         ];
 
         if (!$Officer) {

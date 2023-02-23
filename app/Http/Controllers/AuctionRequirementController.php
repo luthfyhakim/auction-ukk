@@ -30,12 +30,18 @@ class AuctionRequirementController extends Controller
             $identity_cards->district = $iDistrict;
             $identity_cards->village  = $iVillage;
         } else {
-            $genders = ['Laki - laki', 'Perempuan'];
+            $genders        = ['Laki - laki', 'Perempuan'];
             $provinces      = Province::all();
+            $cities         = City::where('province_id', 35)->get();
+            $districts      = District::where('city_id', 3503)->get();
+            $villages       = Village::where('district_id', 3503110)->get();
 
             return view('auction-requirement.identity-cards.edit', [
                 'genders'   => $genders,
-                'provinces' => $provinces
+                'provinces' => $provinces,
+                'cities'    => $cities,
+                'districts' => $districts,
+                'villages'  => $villages
             ]);
         }
 
@@ -98,8 +104,8 @@ class AuctionRequirementController extends Controller
 
     public function village(Request $request)
     {
-        $districts = Village::where('district_id', $request->get('id'))->pluck('name', 'id');
+        $villages = Village::where('district_id', $request->get('id'))->pluck('name', 'id');
 
-        return response()->json($districts);
+        return response()->json($villages);
     }
 }

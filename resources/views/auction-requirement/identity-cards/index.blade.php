@@ -1,12 +1,12 @@
 @extends('layouts.user-master')
 
-@section('title', 'Persyaratan Lelang')
+@section('title', '| Persyaratan Lelang')
 
 @section('title-header', Auth::user()->name)
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif

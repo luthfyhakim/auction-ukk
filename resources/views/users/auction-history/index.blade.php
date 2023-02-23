@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif
@@ -31,10 +31,10 @@
                     <th scope="col">Tanggal Mulai</th>
                     <th scope="col">Tanggal Berakhir</th>
                     <th scope="col"></th>
-                    @foreach ($model as $auction)      
+                    @foreach ($model as $auction)
                     <tr>
                         <td>{{ $auction->goods->goods }}</td>
-                        <td>Rp. {{ $auction->auction->final_price }}</td>
+                        <td>Rp. {{ $auction->goods->initial_price }}</td>
                         <td>Rp. {{ $auction['bid'] }}</td>
                         <td>{{ custom_date($auction->auction->start_date, 'd M Y') }}</td>
                         <td>{{ custom_date($auction->auction->end_date, 'd M Y') }}</td>

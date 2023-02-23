@@ -67,16 +67,13 @@
                                 <option value="">-- Pilih Provinsi --</option>
                                 @foreach ($provinces as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
-                                    @endforeach
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-6">
                             <label for="city">Kota / Kabupaten</label>
                             <select name="city" id="city" class="form-control @error('city') is-invalid @enderror">
                                 <option value="">-- Pilih Kabupaten --</option>
-                                @foreach ($cities as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -85,18 +82,12 @@
                             <label for="district">Kecamatan</label>
                             <select name="district" id="district" class="form-control @error('district') is-invalid @enderror">
                                 <option value="">-- Pilih Kecamatan --</option>
-                                @foreach ($districts as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-6">
                             <label for="village">Desa</label>
                             <select name="village" id="village" class="form-control @error('village') is-invalid @enderror">
                                 <option value="">-- Pilih Desa --</option>
-                                @foreach ($villages as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -114,11 +105,37 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('stisla/assets/js/axios.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript">
     $(function () {
+        $('#province').on('change', function () {
+            axios.post('{{ route('user.goodies.city') }}', {id: $(this).val()})
+                .then(function (response) {
+                    $('#city').empty();
+
+                    $.each(response.data, function (id, name) {
+                        $('#city').append(new Option(name, id))
+                    })
+                });
+        });
+    });
+
+    $(function () {
+        $('#city').on('change', function () {
+            axios.post('{{ route('user.goodies.district') }}', {id: $(this).val()})
+                .then(function (response) {
+                    $('#district').empty();
+
+                    $.each(response.data, function (id, name) {
+                        $('#district').append(new Option(name, id))
+                    })
+                });
+        });
+    });
+
+    $(function () {
         $('#district').on('change', function () {
-            axios.post('{{ route('user.dependent-dropdown') }}', {id: $(this).val()})
+            axios.post('{{ route('user.goodies.village') }}', {id: $(this).val()})
                 .then(function (response) {
                     $('#village').empty();
 

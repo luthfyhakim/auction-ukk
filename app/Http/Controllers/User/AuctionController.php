@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 // use PDF;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Goods;
 use App\Auction;
 use Ramsey\Uuid\Uuid;
@@ -12,6 +12,7 @@ use App\AuctionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class AuctionController extends Controller
 {
@@ -152,7 +153,7 @@ class AuctionController extends Controller
         ])->first();
 
         if ($auction_history) {
-            $auction_history = AuctionHistory::where('goods_id', $auction['goods_id'])->orderBy('bid', 'ASC')->get();
+            $auction_history = AuctionHistory::where('goods_id', $auction['goods_id'])->orderBy('bid', 'DESC')->get();
 
             return view('users.auctions.detail', [
                 'model'           => $auction,
@@ -177,9 +178,9 @@ class AuctionController extends Controller
         $identity_card = Identity_card::where('user_id', Auth::user()->id)->first();
 
         // Jika tidak ada data KTP user
-        if (!$identity_card['user_id'] == Auth::user()->id) {
+        if (!$identity_card == Auth::user()->id) {
             // Kembalikan ke halaman detail Lelang dengan pesan
-            return redirect('/user/auctions/' . $id . '/detail')->with('error', 'Untuk mengikuti lelang, pasti Anda melengkapi KTP terlebih dahulur!');
+            return redirect('/user/auctions/' . $id . '/detail')->with('error', 'Untuk mengikuti lelang, pastikan Anda melengkapi KTP terlebih dahulu!');
         }
 
         $auction_history = AuctionHistory::where('goods_id', $auction['goods_id'])->get();
@@ -192,14 +193,46 @@ class AuctionController extends Controller
                 'id'         => Uuid::uuid4()->getHex(),
                 'auction_id' => $auction->id,
                 'goods_id'   => $auction->goods_id,
-                'user_id'    => Auth::user()->id
+                'user_id'    => Auth::user()->id,
+                'bid'        => $auction->final_price
             ];
 
             AuctionHistory::create($auctionFollow);
         }
 
         // Kembalikan ke tampilan detail dengan status
-        return view('users.auctions.detail', ['model' => $auction, 'auction_history' => $auction_history])->with('status', 'Lelang berhasil diikuti!');
+        return view('users.auctions.detail', [
+            'model'           => $auction,
+            'auction_history' => $auction_history
+        ])->with('status', 'Lelang berhasil diikuti!');
+    }
+
+    public function bid($id, Request $request)
+    {
+        $request->validate([
+            'bid' => 'required'
+        ]);
+
+        $auction_history = AuctionHistory::where('user_id', Auth::user()->id)->first();
+
+        $data = [];
+        foreach ($request->all() as $key => $value) {
+            $data[$key] = $value;
+        }
+
+        $data['bid'] = str_replace("Rp. ", "", $request->bid);
+
+        if ($data['bid'] <= $auction_history->auction->final_price) {
+            return redirect('/user/auctions/' . $id . '/detail')->with('error', 'Penawaran harus lebih besar dari harga terakhir!');
+        }
+
+        // update data dengan user sama tapi beda barang(lelang)
+        AuctionHistory::where([['user_id', Auth::user()->id], ['auction_id', $id]])->update(['bid' => $data['bid']]);
+
+        // update data final_price
+        Auction::where('id', $id)->update(['final_price' => $data['bid']]);
+
+        return $this->auction_follow($id);
     }
 
     public function export_filter(Request $request)
@@ -218,34 +251,5 @@ class AuctionController extends Controller
     {
         $pdf = PDF::loadview('users.auctions.export', compact('auctions'))->setPaper('A4', 'potrait');
         return $pdf->stream('Laporan-Lelang-Saya');
-    }
-
-    public function bid($id, Request $request)
-    {
-        $request->validate([
-            'bid' => 'required'
-        ]);
-
-        $auction_history = AuctionHistory::where('user_id', Auth::user()->id)->first();
-
-        $bid_request = str_replace('.', '', $request->bid);
-        $final_price = str_replace('.', '', $auction_history->auction->final_price);
-        $bid_request = str_replace('Rp ', '', $bid_request);
-
-        if ($bid_request < $final_price) {
-            return $this->auction_follow($id)->with('error', 'Penawaran harus lebih besar dari!');
-        }
-
-        $data = [];
-        foreach ($request->all() as $key => $value) {
-            $data[$key] = $value;
-        }
-
-        $data['bid'] = $bid_request;
-
-        AuctionHistory::where('user_id', Auth::user()->id)->update(['bid' => $data['bid']]);
-        Auction::where('id', $id)->update(['final_price' => $data['bid']]);
-
-        return $this->auction_follow($id);
     }
 }

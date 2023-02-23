@@ -6,7 +6,7 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
@@ -35,6 +35,10 @@
                         </tr>
                         <tr>
                             <th scope="col">Harga Awal</th>
+                            <td>Rp. {{ $model->goods->initial_price }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Harga Tertinggi</th>
                             <td>Rp. {{ $model->final_price }}</td>
                         </tr>
                         <tr>
@@ -57,7 +61,7 @@
                 <div class="card-body">
                     <div class="hero bg-primary text-white">
                         <div class="hero-inner">
-                            <h2>Sampurasun, {{ Auth::user()->first_name }}!</h2>
+                            <h2>Welcome, {{ Auth::user()->first_name }}!</h2>
                             <p class="lead">Silahkan klik tombol <b>Ikuti</b> jika ingin mengikuti lelang ini!</p>
                             <div class="mt-4">
                                 <button class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="fas fa-gavel"></i> Ikuti</button>

@@ -60,7 +60,7 @@ class AuctionHistoryController extends Controller
      */
     public function show(AuctionHistory $auction_history)
     {
-        // 
+        //
     }
 
     /**

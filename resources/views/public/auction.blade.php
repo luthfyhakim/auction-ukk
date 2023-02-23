@@ -55,7 +55,7 @@
                         <div class="entry-content">
                             <p>{{ Str::limit($auction->goods->description, 200, '...') }}</p>
                         </div>
-                        <a href="#" class="btn btn-primary">Ikuti</a>
+                        <a href="/login" class="btn btn-primary">Ikuti</a>
                     </article>
                 </div>
                 @endforeach

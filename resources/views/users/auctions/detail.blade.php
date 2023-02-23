@@ -6,12 +6,12 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
 @if (session('error'))
-    <div class="alert alert-primary">
+    <div class="alert alert-danger">
         {{ session('error') }}
     </div>
 @endif
@@ -64,9 +64,9 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
-                                    <tr>
-                                        <th scope="col">Batas Penawaran</th>
-                                        <td>Rp. <b>{{ $auction_history[0]->auction->final_price }}</b></td>
+                                    <tr class="bg-warning text-white">
+                                        <th scope="col"><b>Batas Penawaran</b></th>
+                                        <td><b>Rp. {{ $model->final_price }}</b></td>
                                     </tr>
                                     @foreach ($auction_history as $item)
                                         <tr>

@@ -88,7 +88,9 @@ Route::name('user.')->prefix('user')->middleware('auth', 'verified')->group(func
     Route::get('/profile', 'User\UserController@profile')->name('profile');
     Route::patch('/profile/{id}', 'User\UserController@profile_update');
     // Goodies
-    Route::post('/dependent-dropdown', 'User\GoodsController@origin_of_goods')->name('dependent-dropdown');
+    Route::post('/dependent-dropdown/goodies/city', 'User\GoodsController@city')->name('goodies.city');
+    Route::post('/dependent-dropdown/goodies/district', 'User\GoodsController@district')->name('goodies.district');
+    Route::post('/dependent-dropdown/goodies/village', 'User\GoodsController@village')->name('goodies.village');
     Route::post('/goodies/export-filter', 'User\GoodsController@export_filter')->name('goodies.export_filter');
     Route::get('/goodies/export', 'User\GoodsController@export')->name('goodies.export');
     Route::resource('goodies', 'User\GoodsController', ['names' => ['index' => 'goodies']]);
@@ -100,14 +102,17 @@ Route::name('user.')->prefix('user')->middleware('auth', 'verified')->group(func
     Route::resource('auctions', 'User\AuctionController', ['names' => ['index' => 'auctions']]);
     Route::patch('/auctions/{id}/bid', 'User\AuctionController@bid')->name('auction-bid');
     // Auction Requirement
-    Route::get('/auction-requiremen/identity-card', 'AuctionRequirementController@identity_card')->name('identity-card');
-    Route::patch('/auction-requiremen/identity-card', 'AuctionRequirementController@identity_card_update');
-    Route::post('/dependent-dropdown/province', 'AuctionRequirementController@city')->name('city');
+    Route::get('/auction-requirement/identity-card', 'AuctionRequirementController@identity_card')->name('identity-card');
+    Route::patch('/auction-requirement/identity-card', 'AuctionRequirementController@identity_card_update');
+    Route::post('/dependent-dropdown/city', 'AuctionRequirementController@city')->name('city');
     Route::post('/dependent-dropdown/district', 'AuctionRequirementController@district')->name('district');
     Route::post('/dependent-dropdown/village', 'AuctionRequirementController@village')->name('village');
-    Route::get('/auction-requiremen/npwp', 'AuctionRequirementController@npwp')->name('npwp');
-    Route::get('/auction-requiremen/bank-account', 'AuctionRequirementController@bank_account')->name('bank');
+    Route::get('/auction-requirement/npwp', 'AuctionRequirementController@npwp')->name('npwp');
+    Route::get('/auction-requirement/bank-account', 'AuctionRequirementController@bank_account')->name('bank');
     // Auctions History
     Route::resource('/auction-histories', 'User\AuctionHistoryController', ['names' => ['index' => 'auction-histories']]);
     Route::patch('/auction-histories/{id}', 'User\AuctionHistoryController@update')->name('bid');
 });
+
+// log viewer
+Route::get('/log', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
