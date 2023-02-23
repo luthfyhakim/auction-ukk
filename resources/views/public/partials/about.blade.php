@@ -7,9 +7,9 @@
                 </div>
             </div>
             <div class="col-lg-5 pl-lg-5 wow fadeInUp">
-                <h2 class="mb-4">AuctionUkk</h2>
+                <h2 class="mb-4">Auction Ukk</h2>
                 <p class="mb-4">
-                    Merupakan sebuah perusahaan teknologi asal Indonesia yang melayani <b>Lelang Online</b>. Perusahaan ini didirikan pada tahun 2023 di Trenggalek oleh <a href="github.com/luthfyhakim" target="_blank">Luthfi Hakim</a>. Saat ini, <b>{{ config('app.name') }}</b> baru tersedia di Trenggalek, Jawa Timur.
+                    Merupakan sebuah perusahaan teknologi asal Indonesia yang melayani <b>Lelang Online</b>. Perusahaan ini didirikan pada tahun 2023 di Trenggalek oleh <a href="https://github.com/luthfyhakim" target="_blank">Luthfi Hakim</a>. Saat ini, <b>Auction Ukk</b> baru tersedia di Trenggalek, Jawa Timur.
                 </p>
                 <a href="{{ route('about') }}" class="btn btn-outline-primary rounded-pill">Selengkapnya</a>
             </div>

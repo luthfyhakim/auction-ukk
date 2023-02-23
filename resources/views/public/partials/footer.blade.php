@@ -13,8 +13,7 @@
                     <div class="col-md-6 col-lg-4 py-3">
                         <h5 class="mb-3">Kontak</h5>
                         <ul class="menu-link">
-                            <li><a class="">Connect with me</a></li>
-                            <li><a href="github.com/luthfyhakim" class="">luthfyhakim on github</a></li>
+                            <li><a href="https://github.com/luthfyhakim" class="">luthfyhakim on github</a></li>
                             <li><a href="mailto:luthfyhakim250404@gmail.com" class="">luthfyhakim250404@gmail.com</a></li>
                         </ul>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.public-master')
 
-@section('title', '| Tenteng')
+@section('title', '| Tentang')
 
 @section('content')
 <main class="bg-light">
@@ -30,17 +30,17 @@
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
                     <div class="card-page mt-3">
-                        <h5 class="fg-primary">Pahlawan Kami</h5>
+                        <h5 class="fg-primary">Developer Kami</h5>
                         <hr>
 
                         <div class="row justify-content-center">
                             <div class="col-lg py-3">
                             <div class="team-item">
                                 <div class="team-avatar">
-                                <img src="{{ asset('img/owner/chacha-nurholis.jpg') }}" alt="" style="max-width: 100%; height:auto">
+                                <img src="{{ asset('img/owner/my-image.jpeg') }}" alt="" style="max-width: 100%; height:auto">
                                 </div>
-                                <h5 class="team-name"><a href="https://chanurholis.github.io" target="_blank">Chacha Nurholis</a></h5>
-                                <span class="fg-gray fs-small">Founder | Owner | Web Developer</span>
+                                <h5 class="team-name"><a href="https://github.com/luthfyhakim" target="_blank">Luthfi Hakim</a></h5>
+                                <span class="fg-gray fs-small">Student | Software Engineer | Cloud Engineer</span>
                             </div>
                             </div>
                             </div>
