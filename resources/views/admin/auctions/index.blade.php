@@ -18,7 +18,7 @@
     <div class="card-header">
         <h4>Lelang <span>({{ $auctions->count() }})</span></h4>
         <div class="card-header-action">
-            <a href="{{ route('admin.auctions.export') }}" target="_blank" class="btn btn-danger">Ekpor <i class="fas fa-file-export"></i></a>
+            <a href="{{ route('admin.export') }}" target="_blank" class="btn btn-danger">Ekpor <i class="fas fa-file-export"></i></a>
         </div>
     </div>
     <div class="card-body p-0">
@@ -30,7 +30,7 @@
                     <th scope="col">Tanggal Mulai</th>
                     <th scope="col">Tanggal Berakhir</th>
                     <th scope="col">Status</th>
-                    <th scope="col"></th>
+                    <th scope="col">Aksi</th>
                     @foreach ($auctions as $auction)
                     <tr>
                         <td>{{ $auction->goods->goods }}</td>
@@ -38,7 +38,7 @@
                         <td>{{ $auction['start_date'] }}</td>
                         <td>{{ $auction['end_date'] }}</td>
                         <td>@if ($auction['status'] == 'opened') <div class="badge badge-success">{{ auction_status($auction['status']) }}</div> @else <div class="badge badge-warning">{{ auction_status($auction['status']) }}</div> @endif</td>
-                        <td class="text-right">
+                        <td>
                             <a href="{{ url('/admin/auctions/') . '/' . $auction['id'] }}" class="btn btn-info"><i class="fa fa-search"></i></a>
                         </td>
                     </tr>
@@ -50,7 +50,7 @@
     <div class="card-footer text-right">
         <nav class="d-inline-block">
             <ul class="pagination mb-0">
-                {{-- {{ $auctions->links() }} --}}
+                {{ $auctions->links() }}
             </ul>
         </nav>
     </div>

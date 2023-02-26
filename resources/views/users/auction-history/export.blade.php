@@ -17,7 +17,7 @@
 <body>
 	<center>
 		{{-- <img src="{{ asset('img/favicon.png') }}" width="50" alt="logo"> --}}
-		<h5>Laporan Lelang</h5>
+		<h5>Laporan History Lelang</h5>
 	</center>
 
     <br>
@@ -28,22 +28,22 @@
 				<th style="text-align:center">No</th>
                 <th>Pengguna</th>
 				<th>Nama Barang</th>
-				<th>Harga Akhir</th>
+				<th>Harga Awal</th>
+                <th>Penawaran Saya</th>
 				<th>Tanggal Mulai</th>
 				<th>Tanggal Berakhir</th>
-				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($auctions as $auction)
+			@foreach($auction_histories as $auction_history)
 			<tr>
 				<td style="text-align:center">{{ $loop->iteration }}</td>
-				<td>{{ $auction->user->name }}</td>
-				<td>{{ $auction->goods->goods }}</td>
-				<td>Rp. {{ $auction->final_price }}</td>
-				<td>{{ $auction->start_date }}</td>
-				<td>{{ $auction->end_date }}</td>
-				<td>{{ auction_status($auction->status) }}</td>
+				<td>{{ $auction_history->user->name }}</td>
+				<td>{{ $auction_history->goods->goods }}</td>
+				<td>Rp. {{ $auction_history->goods->initial_price }}</td>
+				<td>Rp. {{ $auction_history->bid }}</td>
+				<td>{{ custom_date($auction_history->auction->start_date, 'd M Y') }}</td>
+				<td>{{ custom_date($auction_history->auction->end_date, 'd M Y') }}</td>
 			</tr>
 			@endforeach
 		</tbody>

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {{-- Required meta tags --}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
-</head>
-<body>
-	<style type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
 		table tr td,
 		table tr th{
 			font-size: 9pt;
 		}
 	</style>
+</head>
+<body>
 	<center>
 		<h5>Laporan Lelang</h4>
 	</center>
@@ -39,7 +42,7 @@
 				<td>Rp. {{ $auction->final_price }}</td>
 				<td>{{ $auction->start_date }}</td>
 				<td>{{ $auction->end_date }}</td>
-				<td>{{ auction_status($auction->status) }}</td>
+                <td>@if ($auction['status'] == 'opened') <div class="badge badge-success">{{ auction_status($auction['status']) }}</div> @else <div class="badge badge-warning">{{ auction_status($auction['status']) }}</div> @endif</td>
 			</tr>
 			@endforeach
 		</tbody>

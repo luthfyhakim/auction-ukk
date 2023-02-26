@@ -16,8 +16,8 @@ class DefaultOfficerSeeder extends Seeder
     {
         $first_name     = 'Admin';
         $last_name      = 'Auction';
-        $email          = 'admin123@gmail.com';
-        $password       = 'adminroot';
+        $email          = 'adminauction@gmail.com';
+        $password       = 'adminauction';
         $phone_number   = '085335249308';
 
         $this->command->line("");
