@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\AuctionHistory;
+use App\Goods;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 
 class AuctionHistoryController extends Controller
@@ -16,11 +18,9 @@ class AuctionHistoryController extends Controller
      */
     public function index()
     {
-        $auctionHistories = AuctionHistory::where('user_id', Auth::user()->id)->get();
+        $auctionHistories = AuctionHistory::where('user_id', Auth::user()->id)->paginate(10);
 
-        return view('users.auction-history.index', [
-            'model' => $auctionHistories
-        ]);
+        return view('users.auction-history.index', compact('auctionHistories'));
     }
 
     /**
@@ -95,5 +95,23 @@ class AuctionHistoryController extends Controller
     public function destroy(AuctionHistory $auctionHistory)
     {
         //
+    }
+
+    public function export_filter(Request $request)
+    {
+        $request->validate([
+            'start_export' => 'required|date',
+            'end_export'   => 'required|date'
+        ]);
+
+        $auction_histories = AuctionHistory::where('user_id', Auth::user()->id)->whereBetween('created_at', [$request->start_export, $request->end_export])->get();
+
+        return $this->export($auction_histories);
+    }
+
+    public function export($auction_histories)
+    {
+        $pdf = PDF::loadview('users.auction-history.export', compact('auction_histories'))->setPaper('A4', 'potrait');
+        return $pdf->stream('Laporan-history-lelang');
     }
 }

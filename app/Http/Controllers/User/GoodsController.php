@@ -169,7 +169,7 @@ class GoodsController extends Controller
     public function export($goodies)
     {
         $pdf = PDF::loadview('users.goodies.export', compact('goodies'))->setPaper('A4', 'potrait');
-        return $pdf->stream('Laporan-Barang');
+        return $pdf->stream('Laporan-barang');
         // return $pdf->download('Laporan-Barang.pdf');
     }
 

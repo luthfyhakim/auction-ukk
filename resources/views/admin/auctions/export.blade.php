@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
 	<style type="text/css">

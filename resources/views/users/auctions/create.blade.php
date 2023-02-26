@@ -1,6 +1,6 @@
 @extends('layouts.user-master')
 
-@section('title', 'Lelang Baru')
+@section('title', '| Lelang Baru')
 
 @section('title-header', 'Lelang Baru')
 

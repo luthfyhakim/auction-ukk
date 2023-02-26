@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Following -->
     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
@@ -58,7 +58,7 @@
 </div>
 
 <!-- Recent Activities -->
-{{-- <div class="row">
+<div class="row">
     <div class="col-lg col-md-12 col-12 col-sm-12">
         <div class="card">
             <div class="card-header">
@@ -107,5 +107,5 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 @endsection

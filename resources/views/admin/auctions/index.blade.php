@@ -18,7 +18,7 @@
     <div class="card-header">
         <h4>Lelang <span>({{ $auctions->count() }})</span></h4>
         <div class="card-header-action">
-            <a href="{{ route('admin.auctions.export') }}" target="_blank" class="btn btn-danger">Ekpor <i class="fas fa-file-export"></i></a>
+            <a href="{{ route('admin.export') }}" target="_blank" class="btn btn-danger">Ekpor <i class="fas fa-file-export"></i></a>
         </div>
     </div>
     <div class="card-body p-0">

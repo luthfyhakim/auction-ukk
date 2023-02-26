@@ -130,6 +130,7 @@ class AuctionController extends Controller
     public function destroy($id)
     {
         Auction::where('id', $id)->delete();
+        AuctionHistory::where('auction_id', $id)->delete();
 
         return redirect('/user/my-auctions')->with('status', 'Lelang berhasil dihapus!');
     }
@@ -250,6 +251,6 @@ class AuctionController extends Controller
     public function export($auctions)
     {
         $pdf = PDF::loadview('users.auctions.export', compact('auctions'))->setPaper('A4', 'potrait');
-        return $pdf->stream('Laporan-Lelang-Saya');
+        return $pdf->stream('Laporan-lelang');
     }
 }

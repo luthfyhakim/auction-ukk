@@ -21,8 +21,9 @@
             <button class="btn btn-danger" id="modal-4">Ekspor <i class="fas fa-file-export"></i></button>
         </div>
     </div>
+
     <!-- Export Modal -->
-    <form class="modal-part" id="modal-cetak" action="{{ route('user.goodies.export_filter') }}" method="post">
+    <form class="modal-part" id="modal-cetak" target="_blank" action="{{ route('user.goodies.export_filter') }}" method="post">
         @csrf
         <div class="form-group">
             <label for="start_export">Dari</label>
