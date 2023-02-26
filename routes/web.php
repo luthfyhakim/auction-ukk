@@ -64,8 +64,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth:officer', 'verified')->
     Route::resource('users', 'Admin\UserController', ['names' => ['index' => 'users']]);
     // Lelang
     Route::resource('auctions', 'Admin\AuctionController', ['names' => ['index' => 'auctions']]);
-    Route::get('/auctions', 'Admin\AuctionController@index')->name('auctions');
-    Route::get('/auctions/export', 'Admin\AuctionController@export')->name('export');
+    Route::get('/export/auctions', 'Admin\AuctionController@export')->name('export');
     // Profile
     Route::get('/profile', 'Admin\AdminController@profile')->name('profile');
     Route::patch('/profile/{id}', 'Admin\AdminController@profile_update');

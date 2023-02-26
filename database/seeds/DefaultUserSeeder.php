@@ -15,6 +15,7 @@ class DefaultUserSeeder extends Seeder
     {
         $this->createUser1();
         $this->createUser2();
+        $this->createUser3();
     }
 
     public function createUser1()
@@ -60,6 +61,39 @@ class DefaultUserSeeder extends Seeder
 
         $this->command->line("");
         $this->command->line("Create Default User 2...");
+        $user     = User::where('email', $email)->first();
+        $dataUser = [
+            'first_name'        => $first_name,
+            'last_name'         => $last_name,
+            'name'              => $first_name . ' ' . $last_name,
+            'email'             => $email,
+            'password'          => Hash::make($password),
+            'email_verified_at' => now(),
+            'phone_number'      => $phone_number,
+            'term_of_use'       => 'on'
+        ];
+
+        if (!$user) {
+            $user = User::create($dataUser);
+        } else {
+            $user->update($dataUser);
+        }
+
+        $this->command->line(" + Email    : " .  $dataUser['email']);
+        $this->command->line(" + Password : {$password}");
+        $this->command->line("");
+    }
+
+    public function createUser3()
+    {
+        $first_name     = 'Ecobag';
+        $last_name      = 'Baggy';
+        $email          = 'ecobagbaggy@gmail.com';
+        $password       = 'ecobagbaggy';
+        $phone_number   = '085335249670';
+
+        $this->command->line("");
+        $this->command->line("Create Default User 3...");
         $user     = User::where('email', $email)->first();
         $dataUser = [
             'first_name'        => $first_name,

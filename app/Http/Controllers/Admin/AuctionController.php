@@ -18,7 +18,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $auctions = Auction::all();
+        $auctions = Auction::paginate(10);
 
         return view('admin.auctions.index', compact('auctions'));
     }
@@ -143,6 +143,6 @@ class AuctionController extends Controller
         $auctions = Auction::all();
 
         $pdf = PDF::loadview('admin.auctions.export', compact('auctions'))->setPaper('A4', 'potrait');
-        return $pdf->stream('Laporan-Lelang');
+        return $pdf->stream('Laporan-lelang');
     }
 }
