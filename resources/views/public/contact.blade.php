@@ -25,12 +25,12 @@
                             <div class="col-md-6 text-center py-3 py-md-2">
                                 <i class="mai-location-outline h3"></i>
                                 <p class="fg-primary fw-medium fs-vlarge">Lokasi</p>
-                                <p class="mb-0">Subang, Jawa Barat.</p>
+                                <p class="mb-0">Trenggalek, Jawa Timur.</p>
                             </div>
                             <div class="col-md-6 text-center py-3 py-md-2">
                                 <i class="mai-mail-open-outline h3"></i>
                                 <p class="fg-primary fw-medium fs-vlarge">Surel</p>
-                                <a href="mailto:nusantaravalue@gmail.com" class="mb-1">nusantaravalue@gmail.com</a>
+                                <a href="mailto:luthfyhakim250404@gmail.com" class="mb-1">luthfyhakim250404@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -65,5 +65,5 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 @endsection
