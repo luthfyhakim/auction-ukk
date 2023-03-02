@@ -22,7 +22,7 @@
 
 	<br>
 
-	<table class="table table-bordered table-striped mt-5">
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th style="text-align:center">No</th>

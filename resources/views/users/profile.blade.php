@@ -43,7 +43,7 @@
     </div>
     <div class="col-12 col-md-12 col-lg-7">
         @if (session('status'))
-        <div class="alert alert-primary">
+        <div class="alert alert-success">
             {{ session('status') }}
         </div>
         @endif

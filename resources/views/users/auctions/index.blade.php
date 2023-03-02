@@ -22,7 +22,8 @@
                 </div>
                 <p>{{ Str::limit($auction->goods->description, 50, '...') }}</p>
                 <div class="article-user">
-                    <img alt="image" src="@if(Auth::user()->avatar == null) {{ asset('stisla/assets/img/avatar/avatar-1.png') }} @elseif(strstr($auction->user->avatar, 'https')) {{ $auction->user->avatar }} @else {{ '/usersFile/' . $auction->user->avatar }} @endif">
+                    {{-- <img alt="image" src="@if(Auth::user()->avatar == null) {{ asset('stisla/assets/img/avatar/avatar-1.png') }} @elseif(strstr($auction->user->avatar, 'https')) {{ $auction->user->avatar }} @else {{ '/usersFile/' . $auction->user->avatar }} @endif"> --}}
+                    <img alt="image" src="{{ $auction->user->avatar ? asset('usersFile/' . $auction->user->avatar) : '/stisla/assets/img/avatar/avatar-1.png' }}">
                     <div class="article-user-details">
                         <div class="user-detail-name">
                             <a>@if ( $auction->user->id == Auth::user()->id ) Saya @else {{ $auction->user->name }} @endif</a>
