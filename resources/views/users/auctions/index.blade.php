@@ -11,7 +11,7 @@
         <article class="article article-style-c">
             <div class="article-header">
                 <div class="article-badge">
-                    <div class="article-badge-item bg-danger">Rp. {{ $auction->goods->initial_price }}</div>
+                    <div class="article-badge-item bg-danger">Rp. {{ $auction->final_price }}</div>
                 </div>
                 <img src="{{ asset('goodsFile/' . $auction->goods->photo) }}" alt="" class="article-image" style="max-width:100%; height:auto;">
             </div>
