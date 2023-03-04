@@ -64,8 +64,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth:officer', 'verified')->
     Route::resource('users', 'Admin\UserController', ['names' => ['index' => 'users']]);
     // Lelang
     Route::resource('auctions', 'Admin\AuctionController', ['names' => ['index' => 'auctions']]);
-    Route::get('/auctions', 'Admin\AuctionController@index')->name('auctions');
-    Route::get('/auctions/export', 'Admin\AuctionController@export')->name('auctions.export');
+    Route::get('/export/auctions', 'Admin\AuctionController@export')->name('export');
     // Profile
     Route::get('/profile', 'Admin\AdminController@profile')->name('profile');
     Route::patch('/profile/{id}', 'Admin\AdminController@profile_update');
@@ -88,26 +87,34 @@ Route::name('user.')->prefix('user')->middleware('auth', 'verified')->group(func
     Route::get('/profile', 'User\UserController@profile')->name('profile');
     Route::patch('/profile/{id}', 'User\UserController@profile_update');
     // Goodies
-    Route::post('/dependent-dropdown', 'User\GoodsController@origin_of_goods')->name('dependent-dropdown');
-    Route::post('/goodies/export-filter', 'User\GoodsController@export_filter')->name('goodies.export_filter');
+    Route::post('/dependent-dropdown/goodies/city', 'User\GoodsController@city')->name('goodies.city');
+    Route::post('/dependent-dropdown/goodies/district', 'User\GoodsController@district')->name('goodies.district');
+    Route::post('/dependent-dropdown/goodies/village', 'User\GoodsController@village')->name('goodies.village');
     Route::get('/goodies/export', 'User\GoodsController@export')->name('goodies.export');
+    Route::post('/goodies/export-filter', 'User\GoodsController@export_filter')->name('goodies.export_filter');
     Route::resource('goodies', 'User\GoodsController', ['names' => ['index' => 'goodies']]);
     // Auctions
     Route::get('/auctions/export', 'User\AuctionController@export')->name('auctions.export');
+    Route::post('/auctions/export-filter', 'User\AuctionController@export_filter')->name('auctions.export_filter');
     Route::get('/my-auctions', 'User\AuctionController@my_auction')->name('my-auctions');
     Route::get('/auctions/{id}/detail', 'User\AuctionController@auction_detail')->name('auction-detail');
     Route::post('/auctions/{id}/follow', 'User\AuctionController@auction_follow')->name('auction-follow');
     Route::resource('auctions', 'User\AuctionController', ['names' => ['index' => 'auctions']]);
     Route::patch('/auctions/{id}/bid', 'User\AuctionController@bid')->name('auction-bid');
     // Auction Requirement
-    Route::get('/auction-requiremen/identity-card', 'AuctionRequirementController@identity_card')->name('identity-card');
-    Route::patch('/auction-requiremen/identity-card', 'AuctionRequirementController@identity_card_update');
-    Route::post('/dependent-dropdown/province', 'AuctionRequirementController@city')->name('city');
+    Route::get('/auction-requirement/identity-card', 'AuctionRequirementController@identity_card')->name('identity-card');
+    Route::patch('/auction-requirement/identity-card', 'AuctionRequirementController@identity_card_update');
+    Route::post('/dependent-dropdown/city', 'AuctionRequirementController@city')->name('city');
     Route::post('/dependent-dropdown/district', 'AuctionRequirementController@district')->name('district');
     Route::post('/dependent-dropdown/village', 'AuctionRequirementController@village')->name('village');
-    Route::get('/auction-requiremen/npwp', 'AuctionRequirementController@npwp')->name('npwp');
-    Route::get('/auction-requiremen/bank-account', 'AuctionRequirementController@bank_account')->name('bank');
+    Route::get('/auction-requirement/npwp', 'AuctionRequirementController@npwp')->name('npwp');
+    Route::get('/auction-requirement/bank-account', 'AuctionRequirementController@bank_account')->name('bank');
     // Auctions History
+    Route::get('/auction-histories/export', 'User\AuctionHistoryController@export')->name('auction-histories.export');
+    Route::post('/auction-histories/export-filter', 'User\AuctionHistoryController@export_filter')->name('auction-histories.export_filter');
     Route::resource('/auction-histories', 'User\AuctionHistoryController', ['names' => ['index' => 'auction-histories']]);
     Route::patch('/auction-histories/{id}', 'User\AuctionHistoryController@update')->name('bid');
 });
+
+// log viewer
+Route::get('/log', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

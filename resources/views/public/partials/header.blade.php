@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="description" content="Value Nusantara - Sistme Lelang Online Terpercaya Di Indonesia">
-        <meta name="copyright" content="Chacha Nurholis, https://chanurholis.github.io/">
+        <meta name="description" content="Auction Ukk - Sistem Lelang Online Terpercaya Di Indonesia">
+        <meta name="copyright" content="Luthfi Hakim, https://github.com/luthfyhakim">
 
         <!-- Title -->
         <title>{{ config('app.name') }} @yield('title')</title>
@@ -22,3 +22,6 @@
     </head>
 
     <body>
+        <script src="{{ asset('js/app.js') }}"></script>
+    </body>
+</html>

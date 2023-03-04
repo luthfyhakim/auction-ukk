@@ -37,25 +37,25 @@
                                 <div class="icon">
                                     <span class="mai-person"></span>
                                 </div>
-                                <a href="#">{{ $auction->user->name }}</a>
+                                <a href="/login">{{ $auction->user->name }}</a>
                             </div>
                             <div class="meta-item">
                                 <div class="icon">
                                     <span class="mai-chatbubble-ellipses"></span>
                                 </div>
-                                <a href="#">24 Penawaran</a>
+                                <a href="/login">Rp. {{ $auction->final_price }}</a>
                             </div>
                             <div class="meta-item">
                                 <div class="icon">
                                     <span class="mai-location-outline"></span>
                                 </div>
-                                <a href="#">Bendungan, Pagaden Barat.</a>
+                                <a href="/login">{{ $auction->goods->village }}</a>
                             </div>
                         </div>
                         <div class="entry-content">
                             <p>{{ Str::limit($auction->goods->description, 200, '...') }}</p>
                         </div>
-                        <a href="#" class="btn btn-primary">Ikuti</a>
+                        <a href="/login" class="btn btn-primary">Ikuti</a>
                     </article>
                 </div>
                 @endforeach

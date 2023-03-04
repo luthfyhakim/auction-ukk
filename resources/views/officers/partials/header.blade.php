@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <div class="main-wrapper">
-            <div class="navbar-bg"></div>
+            <div class="navbar-bg" style="background-color: salmon;"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
                 <div class="mr-auto">
                     <ul class="navbar-nav mr-3">

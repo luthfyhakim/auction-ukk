@@ -38,7 +38,7 @@
             <li class="menu-header">Persyaratan Lelang</li>
             <li class="{{ set_active('user.identity-card') }}"><a class="nav-link"
                     href="{{ route('user.identity-card') }}"><i class="fas fa-id-card"></i> <span>KTP</span></a></li>
-            {{-- <li class="{{ set_active('user.npwp') }}"><a class="nav-link" href="{{ route('user.npwp') }}"><i class="fas fa-id-badge"></i> <span>NPWP</span></a></li>                        
+            {{-- <li class="{{ set_active('user.npwp') }}"><a class="nav-link" href="{{ route('user.npwp') }}"><i class="fas fa-id-badge"></i> <span>NPWP</span></a></li>
             <li class="{{ set_active('user.bank') }}"><a class="nav-link" href="{{ route('user.bank') }}"><i class="fas fa-file-invoice-dollar"></i> <span>Rekening Bank</span></a></li> --}}
 
             <li class="menu-header">Aktivitas</li>

@@ -1,12 +1,12 @@
 @extends('layouts.user-master')
 
-@section('title', 'Persyaratan Lelang')
+@section('title', '| Persyaratan Lelang')
 
 @section('title-header', Auth::user()->name)
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-primary">
+    <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
@@ -67,7 +67,7 @@
                                 @foreach ($genders as $gender)
                                     @if ($gender == old('gender'))
                                         <option value="{{ $gender }}" selected>{{ $gender }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $gender }}">{{ $gender }}</option>
                                     @endif
                                 @endforeach
@@ -96,7 +96,7 @@
                                 @foreach ($provinces as $province)
                                     @if ($province->id == old('province'))
                                         <option value="{{ $province->id }}" selected>{{ $province->name }}</option>
-                                    @else 
+                                    @else
                                         <option value="{{ $province->id }}">{{ $province->name }}</option>
                                     @endif
                                 @endforeach
@@ -156,7 +156,7 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('stisla/assets/js/axios.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript">
     $(function () {
         $('#province').on('change', function () {

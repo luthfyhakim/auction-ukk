@@ -6,7 +6,7 @@
                 <h2 class="mb-4">Pertanyaan <br> yang sering diajukan</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, minus id consectetur accusantium illum necessitatibus, non quia sit laboriosam aut libero. Maiores neque velit modi, mollitia nostrum alias quibusdam et.</p>
                 <p class="fg-primary fw-medium">Need more helps?</p>
-                <a href="mailto:nusantaravalue@gmail.com" class="btn btn-gradient btn-split-icon rounded-pill">
+                <a href="mailto:luthfyhakim250404@gmail.com" class="btn btn-gradient btn-split-icon rounded-pill">
                     <span class="icon mai-mail-outline"></span> Hubungi Kami
                 </a>
             </div>
@@ -34,9 +34,9 @@
                     </div>
                     <div class="accordion-item wow fadeInRight">
                         <div class="accordion-trigger" id="headingFive">
-                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Already seeing payment methods</button>
+                        <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Already seeing payment methods</button>
                         </div>
-                        <div id="collapse2" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFAQ">
+                        <div id="collapse2" class="collapse" aria-labelledby="headingFive" data-parent="#accordionFAQ">
                         <div class="accordion-content">
                             <p>New to Google Pay and already seeing payment methods? If you paid for something through Google in the past, Google Pay saved your card.</p>
                         </div>
@@ -81,7 +81,7 @@
                             <p>This feature is only available in the US. For the US territories, this is supported only if the debit card was issued under a US-licensed bank. If you'd like to know in advance whether your payment to or from a US territory will go through, please check with your card issuing bank.</p>
 
                             <p>You can use Google Pay to send money to friends and family or to someone using their email address or phone number. Google Pay charges no fees.</p>
-                            
+
                             <p>If you have a problem sending money, here is a list of likely reasons.</p>
                         </div>
                         </div>
@@ -97,7 +97,6 @@
                         </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {{-- Required meta tags --}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('stisla/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<style type="text/css">
 		table tr td,
 		table tr th{
@@ -12,7 +16,7 @@
 </head>
 <body>
 	<center>
-		<img src="{{ asset('img/favicon.png') }}" width="50" alt="logo">
+		{{-- <img src="{{ asset('img/favicon.png') }}" width="50" alt="logo"> --}}
 		<h5>Laporan Lelang</h5>
 	</center>
 

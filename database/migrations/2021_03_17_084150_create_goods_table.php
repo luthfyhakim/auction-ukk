@@ -20,6 +20,8 @@ class CreateGoodsTable extends Migration
             $table->text('description');
             $table->string('photo');
             $table->char('user_id');
+            $table->string('province');
+            $table->string('city');
             $table->string('district');
             $table->string('village');
             $table->string('location');

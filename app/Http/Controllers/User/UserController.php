@@ -16,11 +16,13 @@ class UserController extends Controller
 {
     public function index()
     {
+        $users             = User::paginate(7);
         $goodies           = Goods::where('user_id', Auth::user()->id)->get();
         $auctions          = Auction::where('user_id', Auth::user()->id)->get();
         $auction_histories = AuctionHistory::where('user_id', Auth::user()->id)->get();
 
         return view('users.index', [
+            'users'             => $users,
             'goodies'           => $goodies,
             'auctions'          => $auctions,
             'auction_histories' => $auction_histories

@@ -13,14 +13,87 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
-        $first_name     = 'Luthfi';
+        $this->createUser1();
+        $this->createUser2();
+        $this->createUser3();
+    }
+
+    public function createUser1()
+    {
+        $first_name     = 'Luthfy';
         $last_name      = 'Hakim';
-        $email          = 'luthfyhakim250404@gmail.com';
+        $email          = 'luthfyhakim@gmail.com';
         $password       = 'luthfyhakim';
-        $phone_number   = '085335249308';
+        $phone_number   = '085335249300';
 
         $this->command->line("");
-        $this->command->line("Create Default User...");
+        $this->command->line("Create Default User 1...");
+        $user     = User::where('email', $email)->first();
+        $dataUser = [
+            'first_name'        => $first_name,
+            'last_name'         => $last_name,
+            'name'              => $first_name . ' ' . $last_name,
+            'email'             => $email,
+            'password'          => Hash::make($password),
+            'email_verified_at' => now(),
+            'phone_number'      => $phone_number,
+            'term_of_use'       => 'on'
+        ];
+
+        if (!$user) {
+            $user = User::create($dataUser);
+        } else {
+            $user->update($dataUser);
+        }
+
+        $this->command->line(" + Email    : " .  $dataUser['email']);
+        $this->command->line(" + Password : {$password}");
+        $this->command->line("");
+    }
+
+    public function createUser2()
+    {
+        $first_name     = 'Tangerine';
+        $last_name      = 'Sweety';
+        $email          = 'tangerinesweety@gmail.com';
+        $password       = 'tangerinesweety';
+        $phone_number   = '085335249880';
+
+        $this->command->line("");
+        $this->command->line("Create Default User 2...");
+        $user     = User::where('email', $email)->first();
+        $dataUser = [
+            'first_name'        => $first_name,
+            'last_name'         => $last_name,
+            'name'              => $first_name . ' ' . $last_name,
+            'email'             => $email,
+            'password'          => Hash::make($password),
+            'email_verified_at' => now(),
+            'phone_number'      => $phone_number,
+            'term_of_use'       => 'on'
+        ];
+
+        if (!$user) {
+            $user = User::create($dataUser);
+        } else {
+            $user->update($dataUser);
+        }
+
+        $this->command->line(" + Email    : " .  $dataUser['email']);
+        $this->command->line(" + Password : {$password}");
+        $this->command->line("");
+    }
+
+    public function createUser3()
+    {
+        $first_name     = 'Ecobag';
+        $last_name      = 'Baggy';
+        $email          = 'ecobagbaggy@gmail.com';
+        $password       = 'ecobagbaggy';
+        $phone_number   = '085335249670';
+
+        $this->command->line("");
+        $this->command->line("Create Default User 3...");
         $user     = User::where('email', $email)->first();
         $dataUser = [
             'first_name'        => $first_name,

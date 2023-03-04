@@ -1,6 +1,7 @@
 <div class="page-section no-scroll">
     <div class="container">
-        <h2 class="text-center wow fadeIn">Selamat datang di {{ config('app.name') }} Nusantara</h2>
+        {{-- <h2 class="text-center wow fadeIn">Selamat datang di {{ config('app.name') }} Nusantara</h2> --}}
+        <h2 class="text-center wow fadeIn">Selamat datang di Auction Ukk {{ date('Y') }}</h2>
         <p class="text-center">Sistem <b>Lelang Online</b> non-pemerintahan Trenggalek, Jawa Timur.</p>
 
         <div class="row justify-content-center mt-5">

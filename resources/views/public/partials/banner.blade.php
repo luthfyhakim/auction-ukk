@@ -4,7 +4,7 @@
             <div class="row align-items-center h-100">
                 <div class="col-lg-6 wow fadeInUp">
                     <div class="badge badge-soft mb-2">#1 Lelang Online {{ date('Y') }}</div>
-                    <h1 class="mb-4 fw-normal"><b>Value Nusantara</b> Lelang Online</h1>
+                    <h1 class="mb-4 fw-normal"><b>Auction Ukk {{ date('Y') }}</b> Lelang Online</h1>
                     <p class="mb-4">
                         Berinovasi untuk mempermudah <b>Lelang</b> Anda.
                     </p>

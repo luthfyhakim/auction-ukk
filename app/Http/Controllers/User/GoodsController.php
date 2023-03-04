@@ -41,15 +41,9 @@ class GoodsController extends Controller
     public function create()
     {
         $provinces = Province::all()->pluck('name', 'id');
-        $cities = City::where('province_id', 35)->pluck('name', 'id');
-        $districts = District::where('city_id', 3503)->pluck('name', 'id');
-        $villages = Village::where('district_id', 3503110)->pluck('name', 'id');
 
         return view('users.goodies.create', [
             'provinces' => $provinces,
-            'cities' => $cities,
-            'districts' => $districts,
-            'villages' => $villages
         ]);
     }
 
@@ -175,11 +169,25 @@ class GoodsController extends Controller
     public function export($goodies)
     {
         $pdf = PDF::loadview('users.goodies.export', compact('goodies'))->setPaper('A4', 'potrait');
-        return $pdf->stream('Laporan-Barang');
+        return $pdf->stream('Laporan-barang');
         // return $pdf->download('Laporan-Barang.pdf');
     }
 
-    public function origin_of_goods(Request $request)
+    public function city(Request $request)
+    {
+        $cities = City::where('province_id', $request->get('id'))->pluck('name', 'id');
+
+        return response()->json($cities);
+    }
+
+    public function district(Request $request)
+    {
+        $districts = District::where('city_id', $request->get('id'))->pluck('name', 'id');
+
+        return response()->json($districts);
+    }
+
+    public function village(Request $request)
     {
         $villages = Village::where('district_id', $request->get('id'))->pluck('name', 'id');
 
